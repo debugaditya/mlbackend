@@ -1,6 +1,17 @@
-fastapi
-uvicorn
-numpy
-pandas
-scikit-learn
-tensorflow
+# Web Framework & Server
+fastapi==0.111.0
+uvicorn==0.30.1
+
+# Data Manipulation
+pandas==2.2.2
+numpy==1.26.4
+
+# Machine Learning (Cloud-Optimized)
+tensorflow-cpu==2.16.1
+keras==3.3.3
+scikit-learn==1.6.1
+h5py==3.11.0
+
+# Keras 3 Dependencies (Prevents Render build errors)
+optree==0.11.0
+namex==0.0.8
