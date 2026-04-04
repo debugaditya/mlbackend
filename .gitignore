@@ -1,0 +1,42 @@
+# =========================
+# Python / FastAPI
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# =========================
+# Virtual Environments
+# =========================
+venv/
+env/
+.env
+
+# =========================
+# IDEs / Editor Settings
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# Datasets 
+# =========================
+# Do not commit raw data or large datasets to GitHub
+d1.csv
+*.csv
+
+# =========================
+# OS Generated Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# ML Models & Pickles (Optional)
+# =========================
+# Your model.h5, scaler.pkl, and features.pkl are required for the server to run. 
+# If they are small (under 50MB), it is totally fine to commit them to Git.
+# If they get too large in the future, uncomment the lines below and use Git LFS:
+# *.h5
+# *.pkl
