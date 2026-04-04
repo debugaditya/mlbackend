@@ -45,6 +45,6 @@ def predict(data: dict):
         "prediction": int(pred > 0.5)
     }
 
-@app.get("/health")
+@app.head("/health")
 def health():
     return {"status": "healthy"}
