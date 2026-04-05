@@ -11,7 +11,13 @@ class SafeDense(keras.layers.Dense):
         super().__init__(**kwargs)
 
 app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all domains to access your API
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows POST, GET, OPTIONS, etc.
+    allow_headers=["*"],  # Allows all headers
+)
 # Load everything once when the server starts
 model = keras.models.load_model("model.h5", custom_objects={'Dense': SafeDense})
 scaler = pickle.load(open("scaler.pkl", "rb"))
