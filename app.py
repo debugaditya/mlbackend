@@ -26,25 +26,23 @@ feature_names = pickle.load(open("features.pkl", "rb"))
 
 @app.post("/predict")
 def predict(data: dict):
-    # 1. Convert incoming JSON to DataFrame
-    df = pd.DataFrame([data])
+    # THE FIX: Force floats so pandas creates "Chest_Pain_1.0" instead of "Chest_Pain_1"
+    df = pd.DataFrame([data], dtype=float)
     
-    # 2. THE FIX: Find which columns were categorical in training
-    # If a column name from the incoming data isn't directly in the final features list, 
-    # it means it was one-hot encoded during training!
+    # Find which columns were categorical in training
     categorical_cols = [col for col in df.columns if col not in feature_names]
     
-    # 3. Force pandas to one-hot encode them (even if they are integers)
+    # Force pandas to one-hot encode them
     if categorical_cols:
         df = pd.get_dummies(df, columns=categorical_cols)
         
-    # 4. Align columns exactly to match the model's expectations
+    # Align columns exactly to match the model's expectations
     df = df.reindex(columns=feature_names, fill_value=0)
     
-    # 5. Scale the continuous 'Age' column
+    # Scale the continuous 'Age' column
     df['Age'] = scaler.transform(df[['Age']])
     
-    # 6. Predict!
+    # Predict!
     pred = model.predict(df)[0][0]
     
     return {
